@@ -15,5 +15,5 @@ def stations_by_distance(stations, p):
     for station in stations: 
         distance = haversine(station.coord, p, unit=Unit.KILOMETERS)
         distances.append((station, distance))
-        sorted_by_key(distances, 1)
-    return distances
+        sorted_stations = sorted_by_key(distances, 1)
+    return sorted_stations
