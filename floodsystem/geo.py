@@ -35,5 +35,6 @@ def stations_within_radius(stations, centre, r):
     return s_within_radius
 
 def rivers_with_station(stations):
+    """Returns a set with the names of rivers with a monitoring station"""
     pass
 
