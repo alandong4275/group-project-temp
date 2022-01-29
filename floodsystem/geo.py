@@ -11,9 +11,26 @@ from .utils import sorted_by_key  # noqa
 
 def stations_by_distance(stations, p):
     """Calculates distance of stations in km from a coordinate p"""
-    distances = []
-    for station in stations: 
+    s_by_distance = []
+    for station in stations:
+        # Calculates distances of station locations from p and arranges them in a list
         distance = haversine(station.coord, p, unit=Unit.KILOMETERS)
-        distances.append((station, distance))
-        sorted_by_key(distances, 1)
-    return distances
+        s_by_distance.append((station, distance))
+
+        # Sorts stations by distance from p
+        sorted_stations = sorted_by_key(s_by_distance, 1)
+    return sorted_stations
+
+def stations_within_radius(stations, centre, r):
+    """Returns a list of all stations within radius r of a geographic coordinate centre"""
+    s_within_radius = []
+    for station in stations:
+        # Calculates distances of station locations from centre
+        distance = haversine(station.coord, centre, unit=Unit.KILOMETERS)
+
+        # Discards stations not within the given radius
+        if distance < r:
+            s_within_radius.append(station)
+
+    return s_within_radius
+
