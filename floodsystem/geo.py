@@ -34,3 +34,6 @@ def stations_within_radius(stations, centre, r):
 
     return s_within_radius
 
+def rivers_with_station(stations):
+    pass
+
