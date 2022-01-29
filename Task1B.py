@@ -8,7 +8,7 @@ def run():
     # Build list of stations
     stations = build_station_list()
 
-    # Returns list of stations sorted by distance from Cambridge city centre
+    # Creates list of stations sorted by distance from Cambridge city centre
     sorted_stations = stations_by_distance(stations,  (52.2053, 0.1218))
 
     # Creates two lists of the 10 closest stations and 10 furthest stations, their closest towns, 
@@ -17,11 +17,15 @@ def run():
     furthest_stations = [(station.name, station.town, distance) for (station, distance) in sorted_stations[-10:]]
 
     # Displays two lists
+    print("Closest stations:")
     print(closest_stations)
+    print("\n")
+
+    print("Furthest stations:")
     print(furthest_stations)
 
 
 if __name__ == "__main__":
-    print("*** Task 1B: CUED Part IA Flood Warning System ***")
+    print("\n" + "*** Task 1B: CUED Part IA Flood Warning System ***" + "\n")
     run()
 
