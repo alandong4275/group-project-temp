@@ -11,7 +11,8 @@ from .utils import sorted_by_key  # noqa
 
 def stations_by_distance(stations, p):
     """Calculates distance of stations in km from a coordinate p"""
-    s_by_distance = []
+
+    s_by_distance = list()
     for station in stations:
         # Calculates distances of station locations from p and arranges them in a list
         distance = haversine(station.coord, p, unit=Unit.KILOMETERS)
@@ -23,7 +24,8 @@ def stations_by_distance(stations, p):
 
 def stations_within_radius(stations, centre, r):
     """Returns a list of all stations within radius r of a geographic coordinate centre"""
-    s_within_radius = []
+
+    s_within_radius = list()
     for station in stations:
         # Calculates distances of station locations from centre
         distance = haversine(station.coord, centre, unit=Unit.KILOMETERS)
@@ -35,14 +37,38 @@ def stations_within_radius(stations, centre, r):
     return s_within_radius
 
 def rivers_with_station(stations):
-    """Returns a set with the names of rivers with a monitoring station"""
-    rivers = {}
+    """Returns a list with the names of rivers with a monitoring station"""
+
+    # Creates a set of rivers with monitoring stations
+    rivers = set()
     for station in stations:
-        rivers.add(station.river)
-    return rivers
+        if station.river != None:
+            rivers.add(station.river)
+    
+    # Converts set into alphebetically ordered list
+    sorted_rivers = sorted(rivers)
+    return sorted_rivers
 
 def stations_by_river(stations):
-    pass
+    """Returns a dictionary mapping the names of rivers with a list of their monitoring station"""
+
+    # Creates a dictionary of rivers that map to a list of their monitoring stations
+    rivers = dict()
+    for station in stations:
+        # Adds names of monitoring stations into the list under each river
+        if station.river != None:
+            if station.river in rivers.keys():
+                rivers[station.river].append(station.name)
+            else:
+                rivers[station.river] = [station.name]
+        else:
+            pass
+
+        # Sorts the lists of monitoring stations alphebetically
+        for river in rivers.keys():
+            rivers[river].sort()
+    return rivers
+
 
 def rivers_by_station_number(stations, N):
     pass
