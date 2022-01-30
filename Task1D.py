@@ -10,16 +10,29 @@ def run():
 
     # Creates list of rivers with stations
     rivers = rivers_with_station(stations)
+    no_of_rivers = len(rivers)
 
-    # Creates list of stations by rivers
+    # Displays list
+    print("Rivers with at least one monitoring station:")
+    print(f"{no_of_rivers} rivers. First 10 - {rivers[:10]}\n")
+
+    # Creates dictionary of rivers mapping to their monitoring stations
     s_by_rivers = stations_by_river(stations)
 
-    # Displays lists
-    print(rivers)
-    print(s_by_rivers)
+    # Displays lists of monitoring stations by the rivers Aire, Cam and Thames
+    print(f"Monitoring stations by the River Aire:")
+    print(s_by_rivers["River Aire"])
+    print("\n")
+
+    print(f"Monitoring stations by the River Cam:")
+    print(s_by_rivers["River Cam"])
+    print("\n")
+
+    print(f"Monitoring stations by the River Thames:")
+    print(s_by_rivers["River Thames"])
 
 
 if __name__ == "__main__":
-    print("*** Task 1D: CUED Part IA Flood Warning System ***")
+    print("\n" + "*** Task 1D: CUED Part IA Flood Warning System ***" + "\n")
     run()
 
