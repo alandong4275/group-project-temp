@@ -80,7 +80,7 @@ def update_water_levels(stations):
     # Attach latest reading to station objects
     for station in stations:
 
-        # Reset latestlevel
+        # Reset latest level
         station.latest_level = None
 
         # Atach new level data (if available)
