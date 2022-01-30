@@ -46,7 +46,7 @@ def rivers_with_station(stations):
         if station.river != None:
             rivers.add(station.river)
     
-    # Converts set into alphebetically ordered list
+    # Converts set into alphabetically ordered list
     sorted_rivers = sorted(rivers)
 
     return sorted_rivers
@@ -66,7 +66,7 @@ def stations_by_river(stations):
         else:
             pass
 
-    # Sorts the lists of monitoring stations alphebetically
+    # Sorts the lists of monitoring stations alphabetically
     for river in rivers.keys():
         rivers[river].sort()
 
