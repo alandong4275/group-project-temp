@@ -18,8 +18,9 @@ def stations_by_distance(stations, p):
         distance = haversine(station.coord, p, unit=Unit.KILOMETERS)
         s_by_distance.append((station, distance))
 
-        # Sorts stations by distance from p
+        # Sorts stations by ascending distance from p
         sorted_stations = sorted_by_key(s_by_distance, 1)
+
     return sorted_stations
 
 def stations_within_radius(stations, centre, r):
@@ -37,7 +38,7 @@ def stations_within_radius(stations, centre, r):
     return s_within_radius
 
 def rivers_with_station(stations):
-    """Returns a list with the names of rivers with a monitoring station"""
+    """Returns a list of the names of rivers with a monitoring station"""
 
     # Creates a set of rivers with monitoring stations
     rivers = set()
@@ -47,6 +48,7 @@ def rivers_with_station(stations):
     
     # Converts set into alphebetically ordered list
     sorted_rivers = sorted(rivers)
+
     return sorted_rivers
 
 def stations_by_river(stations):
@@ -64,11 +66,37 @@ def stations_by_river(stations):
         else:
             pass
 
-        # Sorts the lists of monitoring stations alphebetically
-        for river in rivers.keys():
-            rivers[river].sort()
+    # Sorts the lists of monitoring stations alphebetically
+    for river in rivers.keys():
+        rivers[river].sort()
+
     return rivers
 
 
 def rivers_by_station_number(stations, N):
-    pass
+    """Returns a list of the N rivers with the greatest number of monitoring stations 
+    and their number of monitoring stations"""
+
+    # Creates a dictionary of rivers that map to their number of monitoring stations
+    rivers = dict()
+    for station in stations:
+        # Increments number of monitoring stations by 1 for each new monitoring station by a given river
+        if station.river != None:
+            if station.river in rivers.keys():
+                rivers[station.river] += 1
+            else:
+                rivers[station.river] = 1
+        else:
+            pass
+    
+    # Converts dictionary into list of tuples
+    river_list  = [(key, value) for key, value in rivers.items()]
+
+    # Sorts list by descending number of monitoring stations
+    sorted_rivers = sorted_by_key(river_list, 1, reverse=True)
+
+    # Truncates list to initial N items
+    greatest_rivers = sorted_rivers[:N]
+
+    return greatest_rivers
+
