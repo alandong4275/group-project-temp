@@ -8,7 +8,7 @@ def run():
     # Build list of stations
     stations = build_station_list()
 
-    # Returns list of stations sorted by distance from Cambridge city centre
+    # Creates list of stations sorted by distance from Cambridge city centre
     sorted_stations = stations_by_distance(stations,  (52.2053, 0.1218))
 
     # Creates two lists of the 10 closest stations and 10 furthest stations, their closest towns, 

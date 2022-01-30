@@ -8,7 +8,7 @@ def run():
     # Build list of stations
     stations = build_station_list()
 
-    # Returns list of stations sorted by distance from Cambridge city centre
+    # Creates list of stations sorted by distance from Cambridge city centre
     station_names_within_radius = [station.name for station in stations_within_radius(stations,  (52.2053, 0.1218), 10)]
 
     # Displays lists
