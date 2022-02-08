@@ -8,15 +8,7 @@ def run():
     stations = build_station_list()
 
     # Creates list of stations with inconsistent typical ranges
-    inconsistent_stations = list()
-    for station in stations:
-        if station.typical_range_consistent() == False:
-            inconsistent_stations.append(station.name)
-        else:
-            pass
-
-    # Sorts list alphabetically
-    inconsistent_stations.sort()
+    inconsistent_stations = station.inconsistent_typical_range_stations(stations)
 
     # Displays list
     print("Monitoring stations with inconsistent typical ranges:")

@@ -60,3 +60,19 @@ class MonitoringStation:
             r_water_level = (self.latest_level - self.typical_range[0]) / (self.typical_range[1] - self.typical_range[0])
             return r_water_level
 
+
+def inconsistent_typical_range_stations(stations):
+    """Returns a list of stations that have inconsistent data"""
+
+    # Creates list of stations with inconsistent typical ranges
+    inconsistent_stations = list()
+    for station in stations:
+        if station.typical_range_consistent() == False:
+            inconsistent_stations.append(station.name)
+        else:
+            pass
+
+    # Sorts list alphabetically
+    inconsistent_stations.sort()
+
+    return inconsistent_stations
